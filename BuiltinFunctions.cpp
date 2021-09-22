@@ -3,6 +3,25 @@
 
 #include <iostream>
 
+
+
+class SetForm : public Function {
+public:
+  virtual Object* execute(Context* ctx, Cons* args) override {
+    Atom* atom = Cons::nth(args, 0)->as_atom();
+    Object* value = Cons::nth(args, 1);
+
+    if (!atom)
+      return nullptr;
+
+    Object* evaluated = eval(ctx, value);
+    ctx->assign(atom, evaluated);
+
+    return evaluated;
+  }
+};
+
+
 class FnAdd : public Function {
 public:
   virtual Object* execute(Context* ctx, Cons* args) override {
@@ -39,4 +58,5 @@ public:
 
 void init_root_context(Context* root) {
   root->assign(Atom::get("+"), new FnAdd());
+  root->assign(Atom::get("set"), new SetForm());
 }

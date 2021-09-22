@@ -15,4 +15,6 @@ public:
 
   Object* get_head();
   Object* get_tail();
+
+  static Object* nth(Cons* cons, int n);
 };

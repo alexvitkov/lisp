@@ -38,3 +38,14 @@ Object* Cons::get_head() {
 Object* Cons::get_tail() {
   return tail;
 }
+
+
+Object* Cons::nth(Cons* cons, int n) {
+  if (!cons)
+    return nullptr;
+
+  if (n == 0)
+    return cons->head;
+
+  return nth(cons->tail->as_cons(), n - 1);
+}
