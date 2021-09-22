@@ -1,4 +1,4 @@
-#include "Data.hpp"
+#include "Number.hpp"
 #include <ostream>
 
 Number::Number(double value) : value(value) {

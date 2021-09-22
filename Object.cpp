@@ -1,4 +1,6 @@
-#include "Data.hpp"
+#include "Object.hpp"
+#include "Cons.hpp"
+#include "Number.hpp"
 #include <iostream>
 
 
