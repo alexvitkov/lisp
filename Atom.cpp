@@ -1,4 +1,5 @@
 #include "Atom.hpp"
+#include "Context.hpp"
 
 #include <unordered_map>
 
@@ -14,9 +15,9 @@ void Atom::to_string(std::ostream& o) {
   o << atom_reverse_map[this];
 }
 
-Object* Atom::evaluate() {
+Object* Atom::evaluate(Context* ctx) {
   // TODO
-  return nullptr;
+  return ctx->resolve(this);
 }
 
 Atom* get_atom(const std::string& str) {

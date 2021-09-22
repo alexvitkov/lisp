@@ -9,6 +9,7 @@ enum Type {
   TYPE_ATOM,
 };
 
+class Context;
 
 class Object {
   // the member function get_type is private, we expose a public get_type(SExpr*) instead,
@@ -19,7 +20,7 @@ class Object {
   virtual void to_string(std::ostream& o) = 0;
   friend std::ostream& operator<<(std::ostream&, Object*);
 
-  virtual Object* evaluate() = 0;
+  virtual Object* evaluate(Context*) = 0;
 
   bool is_cons();
   bool is_number();

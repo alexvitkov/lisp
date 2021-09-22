@@ -12,6 +12,6 @@ void Number::to_string(std::ostream& o) {
   o << value;
 }
 
-Object* Number::evaluate() {
+Object* Number::evaluate(Context*) {
   return this;
 }

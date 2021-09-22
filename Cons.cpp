@@ -12,7 +12,7 @@ void Cons::to_string(std::ostream& o) {
   o << '(' << head << " . " << tail << ')';
 }
 
-Object* Cons::evaluate() {
+Object* Cons::evaluate(Context*) {
   // TODO
   return nullptr;
 }
