@@ -11,3 +11,8 @@ Type Cons::get_type() {
 void Cons::to_string(std::ostream& o) {
   o << '(' << head << " . " << tail << ')';
 }
+
+Object* Cons::evaluate() {
+  // TODO
+  return nullptr;
+}

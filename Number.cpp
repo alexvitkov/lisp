@@ -11,3 +11,7 @@ Type Number::get_type() {
 void Number::to_string(std::ostream& o) {
   o << value;
 }
+
+Object* Number::evaluate() {
+  return this;
+}

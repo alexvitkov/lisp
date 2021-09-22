@@ -19,6 +19,8 @@ class Object {
   virtual void to_string(std::ostream& o) = 0;
   friend std::ostream& operator<<(std::ostream&, Object*);
 
+  virtual Object* evaluate() = 0;
+
   bool is_cons();
   bool is_number();
 };
@@ -29,6 +31,7 @@ class Cons : public Object {
   Object *tail;
   virtual Type get_type() override;
   virtual void to_string(std::ostream& o) override;
+  virtual Object* evaluate() override;
 
 public:
   Cons(Object* head, Object* tail);
@@ -39,6 +42,7 @@ class Number : public Object {
   double value;
   virtual Type get_type() override;
   virtual void to_string(std::ostream& o) override;
+  virtual Object* evaluate() override;
 
 public:
   Number(double value);
