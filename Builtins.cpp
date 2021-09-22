@@ -1,5 +1,6 @@
 #include "Number.hpp"
 #include "Builtins.hpp"
+#include "Lambda.hpp"
 
 #include <iostream>
 
@@ -47,4 +48,5 @@ public:
 void init_root_context(Context* root) {
   root->assign(Atom::get("+"), new FnAdd());
   root->assign(Atom::get("set"), new SetForm());
+  root->assign(Atom::get("lambda"), new LambdaForm());
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Object.hpp"
+#include <vector>
 
 class Cons : public Object {
   Object *head;
@@ -17,4 +18,5 @@ public:
   Object* get_tail();
 
   static Object* nth(Cons* cons, int n);
+  static std::vector<Object*> to_vector(Cons* cons);
 };

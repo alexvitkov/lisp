@@ -14,6 +14,9 @@ bool is_atom_character(char ch) {
   if (ch >= 'a' && ch <= 'z')
     return true;
 
+  if (ch >= '0' && ch <= '9')
+    return true;
+
   if (ch == '-' || ch == '+' || ch == '*' || ch == '/' || ch == '%')
     return true;
 
@@ -50,6 +53,7 @@ Object* parse_list(char*& input) {
     skip_ws(input);
   }
 
+  input++;
   return vector_to_cons(elements, 0);
 }
 
