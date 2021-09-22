@@ -18,8 +18,8 @@ Atom* Object::as_atom() {
   return dynamic_cast<Atom*>(this);
 }
 
-Function* Object::as_function() {
-  return dynamic_cast<Function*>(this);
+Form* Object::as_function() {
+  return dynamic_cast<Form*>(this);
 }
 
 

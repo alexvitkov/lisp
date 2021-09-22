@@ -1,14 +1,25 @@
 #include "Function.hpp"
 #include <ostream>
 
-Type Function::get_type() {
+Type Form::get_type() {
   return TYPE_FUNCTION;
 }
 
-void Function::to_string(std::ostream& o) {
+void Form::to_string(std::ostream& o) {
   o << "FUNCTION";
 }
 
-Object* Function::evaluate(Context*) {
+Object* Form::evaluate(Context*) {
   return this;
+}
+
+Object* Function::execute(Context* context, Cons* args) {
+  std::vector<Object*> evaluated_args;
+
+  while (args) {
+    evaluated_args.push_back(eval(context, args->get_head()));
+    args = args->get_tail()->as_cons();
+  }
+
+  return execute(context, evaluated_args);
 }

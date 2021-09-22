@@ -14,7 +14,7 @@ void Cons::to_string(std::ostream& o) {
 }
 
 Object* Cons::evaluate(Context* ctx) {
-  Function* fn = eval(ctx, head)->as_function();
+  Form* fn = eval(ctx, head)->as_function();
 
   if (!fn)
     return nullptr;

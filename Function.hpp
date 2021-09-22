@@ -1,14 +1,14 @@
 #pragma once
 
 #include "Object.hpp"
+#include "Form.hpp"
 #include "Cons.hpp"
+#include <vector>
 
-class Function : public Object {
 
-  virtual Type get_type() override;
-  virtual void to_string(std::ostream& o) override;
-  virtual Object* evaluate(Context*) override;
 
+class Function : public Form {
 public:
-  virtual Object* execute(Context* context, Cons* args) = 0;
+  virtual Object* execute(Context* context, Cons* args) override;
+  virtual Object* execute(Context* context, const std::vector<Object*> args) = 0;
 };

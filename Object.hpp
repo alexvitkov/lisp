@@ -33,7 +33,7 @@ public:
   class Cons* as_cons();
   class Number* as_number();
   class Atom* as_atom();
-  class Function* as_function();
+  class Form* as_function();
 };
 
 
