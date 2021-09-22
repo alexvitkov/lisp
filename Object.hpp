@@ -6,6 +6,7 @@ enum Type {
   TYPE_NIL,
   TYPE_NUMBER,
   TYPE_CONS,
+  TYPE_ATOM,
 };
 
 
@@ -22,6 +23,7 @@ class Object {
 
   bool is_cons();
   bool is_number();
+  bool is_atom();
 };
 
 

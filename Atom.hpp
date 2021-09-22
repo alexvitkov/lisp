@@ -1,15 +1,14 @@
 #pragma once
 
 #include "Object.hpp"
+#include <string>
 
-class Cons : public Object {
-  Object *head;
-  Object *tail;
-
+class Atom : public Object {
   virtual Type get_type() override;
   virtual void to_string(std::ostream& o) override;
   virtual Object* evaluate() override;
 
-public:
-  Cons(Object* head, Object* tail);
+  friend Atom* get_atom(const std::string& str);
 };
+
+Atom* get_atom(const std::string& str);
