@@ -8,16 +8,24 @@
 
 
 
+extern Object* parse(char*&);
+
 int main() {
   Context* root = new Context(nullptr);
   init_root_context(root);
 
-  Number* num1 = new Number(100);
-  Number* num2 = new Number(200);
-  Number* num3 = new Number(300);
+  while (true) {
+    std::cout << "> ";
 
-  Cons* cons = new Cons(Atom::get("+"), new Cons(num1, new Cons(num2, new Cons(num3, nullptr))));
+    std::string input;
+    std::getline(std::cin, input);
 
-  std::cout << cons->evaluate(root);
+    char* str = (char*)input.c_str();
+    Object* o = parse(str);
+
+    std::cout << o->evaluate(root) << "\n";
+  }
+
+  // std::cout << cons->evaluate(root);
   return 0;
 }

@@ -28,8 +28,8 @@ Object* Cons::evaluate(Context* ctx) {
   return fn->execute(ctx, tail->as_cons());
 }
 
-Object* Cons::evaluate_head(Context* ctx) {
-  return head->evaluate(ctx);
+Object* Cons::get_head() {
+  return head;
 }
 
 Object* Cons::get_tail() {

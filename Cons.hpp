@@ -13,6 +13,6 @@ public:
   virtual Object* evaluate(Context*) override;
   Cons(Object* head, Object* tail);
 
-  Object* evaluate_head(Context*);
+  Object* get_head();
   Object* get_tail();
 };

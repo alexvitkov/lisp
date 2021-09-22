@@ -10,7 +10,7 @@ public:
 
 
     while (1) {
-      Number* num = args->evaluate_head(ctx)->as_number();
+      Number* num = args->get_head()->evaluate(ctx)->as_number();
 
       if (!num) {
 	// FIXME
