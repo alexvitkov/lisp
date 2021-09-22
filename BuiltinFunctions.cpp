@@ -8,9 +8,8 @@ public:
   virtual Object* execute(Context* ctx, Cons* args) override {
     double acc = 0;
 
-
-    while (1) {
-      Number* num = args->get_head()->evaluate(ctx)->as_number();
+    while (args) {
+      Number* num = eval(ctx, args->get_head())->as_number();
 
       if (!num) {
 	// FIXME
@@ -22,7 +21,7 @@ public:
 
       Object* tail = args->get_tail();
       if (!tail)
-	return new Number(acc);
+	break;
 
       if (!tail->as_cons()) {
 	// FIXME
@@ -33,6 +32,7 @@ public:
       args = tail->as_cons();
     }
 
+    return new Number(acc);
   }
 };
 

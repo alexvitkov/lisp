@@ -23,7 +23,7 @@ int main() {
     char* str = (char*)input.c_str();
     Object* o = parse(str);
 
-    std::cout << o->evaluate(root) << "\n";
+    std::cout << eval(root, o) << "\n";
   }
 
   // std::cout << cons->evaluate(root);

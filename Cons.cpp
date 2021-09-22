@@ -14,7 +14,10 @@ void Cons::to_string(std::ostream& o) {
 }
 
 Object* Cons::evaluate(Context* ctx) {
-  Function* fn = head->evaluate(ctx)->as_function();
+  Function* fn = eval(ctx, head)->as_function();
+
+  if (!fn)
+    return nullptr;
 
   if (!tail)
     return fn->execute(ctx, nullptr);

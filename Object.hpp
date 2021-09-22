@@ -13,16 +13,18 @@ enum Type {
 class Context;
 
 class Object {
-  // the member function get_type is private, we expose a public get_type(SExpr*) instead,
-  // because that one works with nullptr as well
+  // the virtual fucntions are private, and there's a corresponding set
+  // of public functions. that's because the public friend functions work with nullptr
   virtual Type get_type() = 0;
   friend Type get_type(Object* expr);
 
   virtual void to_string(std::ostream& o) = 0;
   friend std::ostream& operator<<(std::ostream&, Object*);
 
-public:
   virtual Object* evaluate(Context*) = 0;
+  friend Object* eval(Context*, Object*);
+
+public:
 
   bool is_cons();
   bool is_number();
@@ -36,4 +38,5 @@ public:
 
 
 Type get_type(Object* expr);
+Object* eval(Context*, Object*);
 std::ostream& operator<<(std::ostream&, Object*);

@@ -29,6 +29,13 @@ Type get_type(Object* expr) {
   return expr->get_type();
 }
 
+Object* eval(Context* ctx, Object* obj) {
+  if (!obj)
+    return nullptr;
+
+  return obj->evaluate(ctx);
+}
+
 std::ostream& operator<<(std::ostream& o, Object* obj) {
   if (!obj)
     o << "nil";
