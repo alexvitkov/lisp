@@ -20,7 +20,7 @@ Object* Atom::evaluate(Context* ctx) {
   return ctx->resolve(this);
 }
 
-Atom* get_atom(const std::string& str) {
+Atom* Atom::get(const std::string& str) {
   auto it = atom_map.find(str);
   if (it == atom_map.end()) {
     Atom* atom = new Atom();

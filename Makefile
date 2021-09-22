@@ -1,5 +1,5 @@
 CXX=g++
-CXXFLAGS=
+CXXFLAGS=-g
 
 lisp: *.cpp
 	$(CXX) $(CXXFLAGS) $^ -o $@

@@ -7,6 +7,7 @@ enum Type {
   TYPE_NUMBER,
   TYPE_CONS,
   TYPE_ATOM,
+  TYPE_FUNCTION,
 };
 
 class Context;
@@ -20,11 +21,17 @@ class Object {
   virtual void to_string(std::ostream& o) = 0;
   friend std::ostream& operator<<(std::ostream&, Object*);
 
+public:
   virtual Object* evaluate(Context*) = 0;
 
   bool is_cons();
   bool is_number();
   bool is_atom();
+
+  class Cons* as_cons();
+  class Number* as_number();
+  class Atom* as_atom();
+  class Function* as_function();
 };
 
 

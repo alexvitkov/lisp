@@ -14,3 +14,7 @@ Object* Context::resolve(Atom* atom) {
 
   return nullptr;
 }
+
+void Context::assign(Atom* atom, Object* value) {
+  map[atom] = value;
+}

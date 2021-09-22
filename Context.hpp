@@ -11,4 +11,5 @@ class Context {
 public:
   Context(Context* parent);
   Object* resolve(Atom*);
+  void assign(Atom* atom, Object* value);
 };

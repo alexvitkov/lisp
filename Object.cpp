@@ -2,19 +2,24 @@
 #include "Cons.hpp"
 #include "Number.hpp"
 #include "Atom.hpp"
+#include "Function.hpp"
 #include <iostream>
 
 
-bool Object::is_cons() {
-  return dynamic_cast<Cons*>(this) != nullptr;
+Cons* Object::as_cons() {
+  return dynamic_cast<Cons*>(this);
 }
 
-bool Object::is_number() {
-  return dynamic_cast<Number*>(this) != nullptr;
+Number* Object::as_number() {
+  return dynamic_cast<Number*>(this);
 }
 
-bool Object::is_atom() {
-  return dynamic_cast<Atom*>(this) != nullptr;
+Atom* Object::as_atom() {
+  return dynamic_cast<Atom*>(this);
+}
+
+Function* Object::as_function() {
+  return dynamic_cast<Function*>(this);
 }
 
 
@@ -25,7 +30,10 @@ Type get_type(Object* expr) {
 }
 
 std::ostream& operator<<(std::ostream& o, Object* obj) {
-  obj->to_string(o);
+  if (!obj)
+    o << "nil";
+  else
+    obj->to_string(o);
   return o;
 }
 

@@ -15,3 +15,7 @@ void Number::to_string(std::ostream& o) {
 Object* Number::evaluate(Context*) {
   return this;
 }
+
+double Number::get_value() {
+  return value;
+}

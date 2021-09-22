@@ -8,8 +8,11 @@ class Cons : public Object {
 
   virtual Type get_type() override;
   virtual void to_string(std::ostream& o) override;
-  virtual Object* evaluate(Context*) override;
 
 public:
+  virtual Object* evaluate(Context*) override;
   Cons(Object* head, Object* tail);
+
+  Object* evaluate_head(Context*);
+  Object* get_tail();
 };
