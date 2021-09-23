@@ -22,27 +22,32 @@ public:
   }
 };
 
+using ArithmeticFn = double (*) (double,double);
 
-class FnAdd : public Function {
+template <ArithmeticFn Op>
+class FnArithmetic : public Function {
 public:
   virtual Object* execute(Context* ctx, std::vector<Object*> args) override {
-    double acc = 0;
+    if (args.size() < 1)
+      return nullptr;
+    
+    double acc;
 
-    for (Object* arg : args) {
-      Number* num = arg->as_number();
+    for (int i = 0; i < args.size(); i++) {
+      Number* num = args[i]->as_number();
+      if (!num)
+	return nullptr;
 
-      if (!num) {
-	// FIXME
-	std::cout << "+: Not a number";
-	exit(1);
-      }
-
-      acc += num->get_value();
+      if (i == 0)
+	acc = num->get_value();
+      else
+	acc = Op(acc, num->get_value());
     }
 
     return new Number(acc);
   }
 };
+
 
 class FnCons : public Function {
 public:
@@ -82,8 +87,19 @@ public:
   }
 };
 
+double Add(double a, double b) { return a + b; }
+double Sub(double a, double b) { return a - b; }
+double Mul(double a, double b) { return a * b; }
+double Div(double a, double b) { return a / b; }
+double Mod(double a, double b) { return (long)a % (long)b; }
+
 void init_root_context(Context* root) {
-  root->assign(Atom::get("+"), new FnAdd());
+  root->assign(Atom::get("+"), new FnArithmetic<Add>());
+  root->assign(Atom::get("-"), new FnArithmetic<Sub>());
+  root->assign(Atom::get("*"), new FnArithmetic<Mul>());
+  root->assign(Atom::get("/"), new FnArithmetic<Div>());
+  root->assign(Atom::get("%"), new FnArithmetic<Mod>());
+
   root->assign(Atom::get("cons"), new FnCons());
   root->assign(Atom::get("list"), new FnList());
   root->assign(Atom::get("head"), new FnHead());
