@@ -2,22 +2,11 @@
 
 #include <iosfwd>
 
-enum Type {
-  TYPE_NIL,
-  TYPE_NUMBER,
-  TYPE_CONS,
-  TYPE_ATOM,
-  TYPE_FUNCTION,
-};
-
 class Context;
 
 class Object {
   // the virtual fucntions are private, and there's a corresponding set
   // of public functions. that's because the public friend functions work with nullptr
-  virtual Type get_type() = 0;
-  friend Type get_type(Object* expr);
-
   virtual void to_string(std::ostream& o) = 0;
   friend std::ostream& operator<<(std::ostream&, Object*);
 
@@ -37,6 +26,5 @@ public:
 };
 
 
-Type get_type(Object* expr);
 Object* eval(Context*, Object*);
 std::ostream& operator<<(std::ostream&, Object*);

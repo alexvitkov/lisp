@@ -22,13 +22,6 @@ Form* Object::as_function() {
   return dynamic_cast<Form*>(this);
 }
 
-
-Type get_type(Object* expr) {
-  if (!expr)
-    return TYPE_NIL;
-  return expr->get_type();
-}
-
 Object* eval(Context* ctx, Object* obj) {
   if (!obj)
     return nullptr;

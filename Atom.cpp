@@ -7,10 +7,6 @@
 static std::unordered_map<std::string, Atom*> atom_map;
 static std::unordered_map<Atom*, std::string> atom_reverse_map;
 
-Type Atom::get_type() {
-  return TYPE_ATOM;
-}
-
 void Atom::to_string(std::ostream& o) {
   o << atom_reverse_map[this];
 }

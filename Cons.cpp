@@ -5,10 +5,6 @@
 Cons::Cons(Object* head, Object* tail) : head(head), tail(tail) {
 }
 
-Type Cons::get_type() {
-  return TYPE_CONS;
-}
-
 void Cons::print(std::ostream& o, bool brackets) {
   if (brackets)
     o << '(';

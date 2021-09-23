@@ -1,12 +1,8 @@
 #include "Function.hpp"
 #include <ostream>
 
-Type Form::get_type() {
-  return TYPE_FUNCTION;
-}
-
 void Form::to_string(std::ostream& o) {
-  o << "FUNCTION";
+  o << "form";
 }
 
 Object* Form::evaluate(Context*) {

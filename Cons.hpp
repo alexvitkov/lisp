@@ -9,10 +9,8 @@ class Cons : public Object {
 
   void print(std::ostream& o, bool brackets);
 
-  virtual Type get_type() override;
   virtual void to_string(std::ostream& o) override;
   virtual Object* evaluate(Context*) override;
-
 
 public:
   Cons(Object* head, Object* tail);
