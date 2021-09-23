@@ -21,5 +21,5 @@ public:
   Object* get_tail();
 
   static Object* nth(Cons* cons, int n);
-  static std::vector<Object*> to_vector(Cons* cons);
+  static Cons* from_vector(std::vector<Object*> vtr, int offset);
 };

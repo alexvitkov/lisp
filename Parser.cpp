@@ -32,12 +32,6 @@ void skip_ws(char*& input) {
     input++;
 }
 
-Cons* vector_to_cons(std::vector<Object*>& objects, int offset) {
-  if (offset == objects.size())
-    return nullptr;
-  else
-    return new Cons(objects[offset], vector_to_cons(objects, offset + 1));
-}
 
 Object* parse_list(char*& input) {
   // skip the opening bracket
@@ -54,7 +48,7 @@ Object* parse_list(char*& input) {
   }
 
   input++;
-  return vector_to_cons(elements, 0);
+  return Cons::from_vector(elements, 0);
 }
 
 Object* parse_number(char*& input) {

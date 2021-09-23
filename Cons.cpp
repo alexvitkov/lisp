@@ -67,3 +67,10 @@ Object* Cons::nth(Cons* cons, int n) {
   return nth(cons->tail->as_cons(), n - 1);
 }
 
+
+Cons* Cons::from_vector(std::vector<Object*> objects, int offset) {
+  if (offset == objects.size())
+    return nullptr;
+  else
+    return new Cons(objects[offset], Cons::from_vector(objects, offset + 1));
+}
