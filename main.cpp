@@ -26,6 +26,5 @@ int main() {
     std::cout << eval(root, o) << "\n";
   }
 
-  // std::cout << cons->evaluate(root);
   return 0;
 }

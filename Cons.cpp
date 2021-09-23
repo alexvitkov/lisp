@@ -9,8 +9,25 @@ Type Cons::get_type() {
   return TYPE_CONS;
 }
 
+void Cons::print(std::ostream& o, bool brackets) {
+  if (brackets)
+    o << '(';
+
+  o << head;
+
+  if (tail->as_cons()) {
+    o << ' ';
+    tail->as_cons()->print(o, false);
+  } else if (tail) {
+    o << " . " << tail;
+  }
+
+  if (brackets)
+    o << ')';
+}
+
 void Cons::to_string(std::ostream& o) {
-  o << '(' << head << " . " << tail << ')';
+  print(o, true);
 }
 
 Object* Cons::evaluate(Context* ctx) {

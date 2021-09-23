@@ -7,9 +7,12 @@ class Cons : public Object {
   Object *head;
   Object *tail;
 
+  void print(std::ostream& o, bool brackets);
+
   virtual Type get_type() override;
   virtual void to_string(std::ostream& o) override;
   virtual Object* evaluate(Context*) override;
+
 
 public:
   Cons(Object* head, Object* tail);
