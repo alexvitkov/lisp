@@ -22,6 +22,13 @@ public:
   }
 };
 
+class QuoteForm : public Form {
+public:
+  virtual Object* execute(Context* ctx, Cons* args) override {
+    return Cons::nth(args, 0);
+  }
+};
+
 using ArithmeticFn = double (*) (double,double);
 
 template <ArithmeticFn Op>
@@ -87,6 +94,15 @@ public:
   }
 };
 
+class FnEval : public Function {
+public:
+  virtual Object* execute(Context* ctx, std::vector<Object*> args) override {
+    if (args.size() != 1)
+      return nullptr;
+    return eval(ctx, args[0]);
+  }
+};
+
 double Add(double a, double b) { return a + b; }
 double Sub(double a, double b) { return a - b; }
 double Mul(double a, double b) { return a * b; }
@@ -104,7 +120,9 @@ void init_root_context(Context* root) {
   root->assign(Atom::get("list"), new FnList());
   root->assign(Atom::get("head"), new FnHead());
   root->assign(Atom::get("tail"), new FnTail());
+  root->assign(Atom::get("eval"), new FnEval());
 
   root->assign(Atom::get("set"), new SetForm());
   root->assign(Atom::get("lambda"), new LambdaForm());
+  root->assign(Atom::get("quote"), new QuoteForm());
 }
